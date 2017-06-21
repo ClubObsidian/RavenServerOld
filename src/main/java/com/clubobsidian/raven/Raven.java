@@ -11,15 +11,14 @@ import com.clubobsidian.raven.server.SimpleServer;
 
 public class Raven {
 
-	private static Optional<Server> server;
+	private static Optional<Server> server = Optional.of(new SimpleServer());
 	
 	public static void main(String[] args) throws IOException
 	{
 		//Make instance of SimpleModuleManager to check modules for pre-init
-		if(!Raven.server.isPresent())
-		{
-			Raven.server = Optional.of(new SimpleServer());
-		}
+		
+		
+
 	}
 	
 	public static Optional<Server> getServer()
