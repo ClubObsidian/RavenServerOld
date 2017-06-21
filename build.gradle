@@ -1,0 +1,24 @@
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url = "http://ci.emc.gs/nexus/content/groups/aikar/"
+    }
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.21'
+	//compile 'com.github.ben-manes.caffeine:caffeine:2.5.2'
+	compile 'ninja.leaping.configurate:configurate-yaml:3.3'
+	compile 'ninja.leaping.configurate:configurate-hocon:3.3'
+	compile 'ninja.leaping.configurate:configurate-json:3.3'
+	compile 'ninja.leaping.configurate:configurate-gson:3.3'
+	compile 'com.google.guava:guava:22.0'
+	compile 'co.aikar:taskchain-core:3.6.0'
+    testCompile 'junit:junit:4.12'
+}
