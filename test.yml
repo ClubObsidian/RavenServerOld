@@ -1,5 +1,5 @@
 foo:
-  bar: "value"
+  bar: "baz"
 int: 1
 float: 1.0f
 double: 1.0

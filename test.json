@@ -1,0 +1,12 @@
+{
+	"foo" : { "bar" :  "baz" },
+	"int" : 1,
+	"float" : 1.0,
+	"double" : 1.0,
+	"boolean" : true,
+	"string-list" : ["some", "values"],
+	"int-list" : [1, 2],
+	"float-list" : [1.0, 2.0],
+	"double-list" : [1.0, 2.0],
+	"boolean-list": [true, false]
+}

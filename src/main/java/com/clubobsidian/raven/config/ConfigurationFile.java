@@ -26,7 +26,7 @@ public class ConfigurationFile extends ConfigurationSection {
 			ConfigurationLoader<ConfigurationNode> loader = YAMLConfigurationLoader.builder().setFile(file).build();
 			node = loader.load();
 		}
-		else if(name.endsWith(".hocon"))
+		else if(name.endsWith(".conf"))
 		{
 			ConfigurationLoader<CommentedConfigurationNode> loader = HoconConfigurationLoader.builder().setFile(file).build();
 			node = loader.load();
