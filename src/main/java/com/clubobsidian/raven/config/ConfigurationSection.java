@@ -1,4 +1,4 @@
-package com.clubobsidian.raven.yaml;
+package com.clubobsidian.raven.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,11 @@ public class ConfigurationSection {
 		ConfigurationSection section = new ConfigurationSection();
 		section.node = this.node.getNode(this.parsePath(path));
 		return section;
+	}
+	
+	public Object get(String path)
+	{
+		return this.node.getNode(this.parsePath(path)).getValue();
 	}
 	
 	public String getString(String path)
@@ -38,6 +43,29 @@ public class ConfigurationSection {
 	{
 		return this.node.getNode(this.parsePath(path)).getFloat();
 	}
+	
+	public boolean getBoolean(String path)
+	{
+		return this.node.getNode(this.parsePath(path)).getBoolean();
+	}
+	
+	public double getDouble(String path)
+	{
+		return this.node.getNode(this.parsePath(path)).getDouble();
+	}
+	
+	/*public List<Object> getObjectList(String path)
+	{
+		try 
+		{
+			return this.node.getNode(this.parsePath(path)).getList(TypeToken.of(Object.class));
+		}
+		catch (ObjectMappingException e) 
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}*/
 	
 	public List<String> getStringList(String path)
 	{
@@ -91,10 +119,32 @@ public class ConfigurationSection {
 		return null;
 	}
 	
-	public Object get(String path)
+	public List<Boolean> getBooleanList(String path)
 	{
-		return this.node.getNode(this.parsePath(path)).getValue();
+		try
+		{
+			return this.node.getNode(this.parsePath(path)).getList(TypeToken.of(Boolean.class));
+		}
+		catch (ObjectMappingException e) 
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
+	
+	public List<Double> getDoubleList(String path)
+	{
+		try
+		{
+			return this.node.getNode(this.parsePath(path)).getList(TypeToken.of(Double.class));
+		}
+		catch (ObjectMappingException e) 
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	
 	public List<String> getKeys()
 	{	

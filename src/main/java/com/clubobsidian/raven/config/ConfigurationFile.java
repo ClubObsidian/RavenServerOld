@@ -1,4 +1,4 @@
-package com.clubobsidian.raven.yaml;
+package com.clubobsidian.raven.config;
 
 import java.io.File;
 import java.io.IOException;
