@@ -30,7 +30,7 @@ public class ConfigTest {
 			assertTrue("testYaml get int-list should return 'true'", file.getIntList("int-list") != null && file.getIntList("int-list").size() == 2);
 			assertTrue("testYaml get float-list should return 'true'", file.getFloatList("float-list") != null && file.getFloatList("float-list").size() == 2);
 			assertTrue("testYaml get double-list should return 'true'", file.getDoubleList("double-list") != null && file.getDoubleList("double-list").size() == 2);
-			assertTrue("testYaml get double-list should return 'true'", file.getBooleanList("boolean-list") != null && file.getBooleanList("boolean-list").size() == 2);
+			assertTrue("testYaml get double-list should return 'true'", file.getBooleanList("boolean-list") != null && file.getBooleanList("boolean-list").size() == 3);
 		} 
 		catch (IOException | UnknownFileTypeException e) 
 		{
