@@ -1,48 +1,47 @@
 package com.clubobsidian.raven;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
-import com.clubobsidian.raven.command.CommandManager;
-import com.clubobsidian.raven.event.EventManager;
-import com.clubobsidian.raven.module.ModuleManager;
+import org.slf4j.Logger;
+
 import com.clubobsidian.raven.server.Server;
 import com.clubobsidian.raven.server.SimpleServer;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Raven {
 
+	@Getter
 	private static Optional<Server> server = Optional.of(new SimpleServer());
+	@Getter @Setter
+	private static Path moduleFolder;
 	
 	public static void main(String[] args) throws IOException
 	{
-		//Make instance of SimpleModuleManager to check modules for pre-init
+		if(moduleFolder == null)
+		{
+			moduleFolder = Files.createDirectories(Paths.get("modules"));
+		}
 		
-		
+		if(Raven.getServer().isPresent())
+		{
+			Raven.getServer().get().start(moduleFolder);
+		}
+		else
+		{
+			System.exit(0);
+		}
+	}
 
-	}
-	
-	public static Optional<Server> getServer()
+	public static Logger getLogger()
 	{
-		return Raven.server;
-	}
-	
-	public static void setServer(Optional<Server> server)
-	{
-		Raven.server = server;
-	}
-	
-	public static ModuleManager getModuleManager()
-	{
-		return Raven.server.get().getModuleManager().orElse(null);
-	}
-	
-	public static CommandManager getCommandManager()
-	{
-		return Raven.server.get().getCommandManager().orElse(null);
-	}
-	
-	public static EventManager getEventManager()
-	{
-		return Raven.server.get().getEventManager().orElse(null);
+		return Raven.log;
 	}
 }

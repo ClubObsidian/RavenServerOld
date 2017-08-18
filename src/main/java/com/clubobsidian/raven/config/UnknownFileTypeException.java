@@ -15,5 +15,4 @@ public class UnknownFileTypeException extends Exception {
 	{
 		super("Unknown file type for configuration file " + file.getName());
 	}
-
 }

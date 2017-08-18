@@ -54,19 +54,6 @@ public class ConfigurationSection {
 		return this.node.getNode(this.parsePath(path)).getDouble();
 	}
 	
-	/*public List<Object> getObjectList(String path)
-	{
-		try 
-		{
-			return this.node.getNode(this.parsePath(path)).getList(TypeToken.of(Object.class));
-		}
-		catch (ObjectMappingException e) 
-		{
-			e.printStackTrace();
-		}
-		return null;
-	}*/
-	
 	public List<String> getStringList(String path)
 	{
 		try 
@@ -144,6 +131,7 @@ public class ConfigurationSection {
 		}
 		return null;
 	}
+	
 	
 	
 	public List<String> getKeys()
