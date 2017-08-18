@@ -6,21 +6,18 @@ public class SimpleEventManager implements EventManager {
 	public void dispatchEvent(Event event) 
 	{
 		//TODO
-		
 	}
 
 	@Override
 	public void register(Object listener) 
 	{
 		//TODO
-		
 	}
 
 	@Override
 	public void unregister(Object listener) 
 	{
-		//TODO
-		
+		//TODO	
 	}
 
 }

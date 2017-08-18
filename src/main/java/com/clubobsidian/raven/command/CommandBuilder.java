@@ -55,7 +55,6 @@ public class CommandBuilder
 					commandManager.get().registerCommand(command, this.executor);
 				}
 			}
-			
 		}
 	}
 }
