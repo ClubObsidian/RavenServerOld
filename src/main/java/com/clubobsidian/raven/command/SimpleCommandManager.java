@@ -11,13 +11,15 @@ import com.clubobsidian.raven.event.EventManager;
 import com.clubobsidian.raven.server.Server;
 import com.clubobsidian.raven.user.User;
 
+import lombok.NonNull;
+
 public class SimpleCommandManager implements CommandManager {
 
 	private final Map<String, CommandExecutor> commands = new HashMap<String, CommandExecutor>();
 	private final Map<CommandExecutor, Command> commandMap = new HashMap<CommandExecutor, Command>();
 
 	@Override
-	public boolean registerCommand(Command command, CommandExecutor executor) 
+	public boolean registerCommand(@NonNull Command command, @NonNull CommandExecutor executor) 
 	{
 		if(this.commandExists(command.getName()))
 			return false;
@@ -26,7 +28,7 @@ public class SimpleCommandManager implements CommandManager {
 	}
 
 	@Override
-	public boolean registerCommand(Command command, CommandExecutor executor, boolean force) 
+	public boolean registerCommand(@NonNull Command command, @NonNull CommandExecutor executor, boolean force) 
 	{
 		this.commands.put(command.getName(), executor);
 		this.commandMap.put(executor, command);
@@ -34,13 +36,13 @@ public class SimpleCommandManager implements CommandManager {
 	}
 
 	@Override
-	public boolean commandExists(String command) 
+	public boolean commandExists(@NonNull String command) 
 	{
 		return this.commands.keySet().contains(command);
 	}
 
 	@Override
-	public boolean dispatchCommand(User user, String command) 
+	public boolean dispatchCommand(@NonNull User user, @NonNull String command) 
 	{
 		char ch = command.charAt(0);
 		if(ch == '!' || ch == '/')
