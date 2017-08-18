@@ -9,7 +9,6 @@ import com.clubobsidian.raven.Raven;
 import com.clubobsidian.raven.command.CommandManager;
 import com.clubobsidian.raven.user.User;
 
-import lombok.Cleanup;
 import lombok.SneakyThrows;
 
 public class ConsoleRunnable implements Runnable {
@@ -27,7 +26,6 @@ public class ConsoleRunnable implements Runnable {
 		{  
 			//Fixes bug with some ides not support console
 			//https://stackoverflow.com/questions/4203646/system-console-returns-null
-			@Cleanup
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			line = reader.readLine();
 

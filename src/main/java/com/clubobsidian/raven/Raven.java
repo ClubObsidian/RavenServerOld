@@ -27,7 +27,11 @@ public class Raven {
 	{
 		if(moduleFolder == null)
 		{
-			moduleFolder = Files.createDirectories(Paths.get("modules"));
+			moduleFolder = Paths.get("modules");
+		}
+		if(!Files.exists(moduleFolder))
+		{
+			Files.createDirectories(moduleFolder);
 		}
 		
 		if(Raven.getServer().isPresent())

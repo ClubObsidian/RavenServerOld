@@ -44,6 +44,14 @@ public class SimpleCommandManager implements CommandManager {
 	@Override
 	public boolean dispatchCommand(@NonNull User user, @NonNull String command) 
 	{
+		if(command.length() <= 0)
+		{
+			user.sendMessage("Invalid command length for command, length is: " + command.length());
+			return false;
+		}
+		
+		
+		
 		char ch = command.charAt(0);
 		if(ch == '!' || ch == '/')
 		{

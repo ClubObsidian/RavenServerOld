@@ -34,14 +34,6 @@ public class SimpleModuleManager implements ModuleManager {
 	public void preLoadModules(Path toLoad) 
 	{
 		ModuleWrapperStack stack = new ModuleWrapperStack();
-		try 
-		{
-			Files.createDirectory(toLoad);
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
 		
 		@Cleanup
 		DirectoryStream<Path> stream = Files.newDirectoryStream(toLoad);
