@@ -33,13 +33,8 @@ dependencies {
 
 jar {
   configurations.shade.each { dep ->
-  	from(fileTree('/')) {
-  		include('**/*.yml')
-  	 }
-  }
-  configurations.shade.each { dep ->
     from(project.zipTree(dep)) {
-      exclude 'META-INF', 'META-INF/**'
+      exclude 'META-INF', 'META-INF/**', '**/*.yml'
     }
   }
 }
