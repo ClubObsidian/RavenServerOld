@@ -33,6 +33,7 @@ public class SimpleServer implements Server {
 		
 		if(this.getModuleManager().isPresent())
 		{
+			Raven.getLogger().info("Starting simple module server...");
 			ModuleManager manager = this.getModuleManager().get();
 			manager.preLoadModules(moduleFolder);
 			manager.loadModules();

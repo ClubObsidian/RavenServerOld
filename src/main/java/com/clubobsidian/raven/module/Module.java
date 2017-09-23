@@ -2,7 +2,7 @@ package com.clubobsidian.raven.module;
 
 import java.util.List;
 
-import org.slf4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.google.inject.Binder;
 import com.google.inject.Inject;
@@ -22,6 +22,7 @@ public abstract class Module implements com.google.inject.Module {
 	@Getter(lazy = true)
 	private final Logger logger = logger();
 	
+	@Inject
 	public Module(@NonNull @Named("name") String name, @NonNull List<Class<? extends Module>> binds)
 	{
 		this.name = name;
@@ -54,6 +55,6 @@ public abstract class Module implements com.google.inject.Module {
 	
 	private Logger logger()
 	{
-		return org.slf4j.LoggerFactory.getLogger(this.getClass());
+		return org.apache.logging.log4j.LogManager.getLogger(this.getClass());
 	}
 }

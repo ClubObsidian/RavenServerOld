@@ -42,8 +42,10 @@ public class SimpleModuleManager implements ModuleManager {
 		while(it.hasNext())
 		{
 			Path path = it.next();
-			if(path.getFileName().endsWith(".jar"))
+			Raven.getLogger().info(path.getFileName());
+			if(path.getFileName().toString().endsWith(".jar"))
 			{
+				Raven.getLogger().info("Ends with jar");
 				@Cleanup
 				JarFile jar = new JarFile(path.toFile());
 				ZipEntry moduleEntry = jar.getEntry("module.yml");
@@ -87,6 +89,8 @@ public class SimpleModuleManager implements ModuleManager {
 				if(version == null)
 					version = "";
 				
+				Raven.getLogger().info("After version");
+				
 				ModuleWrapper wrapper = new ModuleWrapper()
 				.setMainClass(main)
 				.setName(name)
@@ -99,6 +103,8 @@ public class SimpleModuleManager implements ModuleManager {
 				stack.add(wrapper);
 			}
 		}
+		
+		Raven.getLogger().info("Stack size: " + stack.size());
 		this.doPreLoad(stack);
 	}
 	
@@ -116,7 +122,7 @@ public class SimpleModuleManager implements ModuleManager {
 					wrapper.getDepend().add(soft);
 				}
 			}
-			wrapper.getSoftDepend().clear();
+			wrapper.setSoftDepend(new ArrayList<>());
 			for(String loadBefore : wrapper.getLoadBefore())
 			{
 				int index = stack.getIndexOfModule(loadBefore);
@@ -125,11 +131,13 @@ public class SimpleModuleManager implements ModuleManager {
 					stack.get(index).getDepend().add(wrapper.getName());
 				}
 			}
-			wrapper.getLoadBefore().clear();
+			wrapper.setLoadBefore(new ArrayList<>());
 			urls.add(wrapper.getLocation().toUri().toURL());
 		}
 		this.loader = new BetterURLClassLoader(urls.toArray(new URL[urls.size()]), Raven.class.getClassLoader());
 		this.modules = new ArrayList<Module>();
+		
+		Raven.getLogger().info("Module wrapper size: " + stack.size());
 		
 		for(ModuleWrapper wrapper : stack)
 		{
@@ -169,21 +177,24 @@ public class SimpleModuleManager implements ModuleManager {
 		{
 			this.injector.injectMembers(module);
 		}
+		Raven.getLogger().info("Preload is done...");
 	}
 
 	@Override
 	public void loadModules() 
 	{
+		Raven.getLogger().info("Trying to load modules...");
 		for(Module module : this.modules)
 		{
 			module.onLoad();
 		}
-		
+		Raven.getLogger().info("Loaded modules");
 	}
 
 	@Override
 	public void enableModules() 
 	{
+		Raven.getLogger().info("Enabling modules...");
 		for(Module module : this.modules)
 		{
 			module.onEnable();

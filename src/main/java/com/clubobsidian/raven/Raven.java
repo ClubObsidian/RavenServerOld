@@ -6,16 +6,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import org.slf4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.clubobsidian.raven.server.Server;
 import com.clubobsidian.raven.server.SimpleServer;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
-@Slf4j
+@Log4j2
 public class Raven {
 
 	@Getter
@@ -25,6 +25,7 @@ public class Raven {
 	
 	public static void main(String[] args) throws IOException
 	{
+		Raven.log.info("Starting raven....");
 		if(moduleFolder == null)
 		{
 			moduleFolder = Paths.get("modules");
