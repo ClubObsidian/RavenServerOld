@@ -16,6 +16,7 @@ import com.clubobsidian.raven.Raven;
 import com.clubobsidian.raven.classloader.BetterURLClassLoader;
 import com.clubobsidian.raven.config.Configuration;
 import com.clubobsidian.raven.config.ConfigurationType;
+import com.google.inject.Inject;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -166,9 +167,12 @@ public class SimpleModuleManager implements ModuleManager {
 					Raven.getLogger().error("Dependency missing for module " + wrapper.getName() + " cannot load");
 				}
 			}
-			Module module = (Module) mainClass.getDeclaredConstructors()[0].newInstance(wrapper.getName(), dependencies);
+			
+			Module module = (Module) mainClass.newInstance();
 			if(module != null)
 			{
+				module.name = wrapper.getName();
+				module.binds = dependencies;
 				this.modules.add(module);
 			}	
 		}

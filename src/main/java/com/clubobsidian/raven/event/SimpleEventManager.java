@@ -2,7 +2,6 @@ package com.clubobsidian.raven.event;
 
 import lombok.NonNull;
 import net.techcable.event4j.EventBus;
-import net.techcable.event4j.EventExecutor;
 import net.techcable.event4j.marker.MarkedEvent;
 
 public class SimpleEventManager implements EventManager {

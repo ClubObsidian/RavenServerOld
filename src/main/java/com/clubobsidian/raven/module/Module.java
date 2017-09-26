@@ -4,29 +4,29 @@ import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 
+
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 
+
 import lombok.Getter;
 import lombok.NonNull;
 
-public abstract class Module implements com.google.inject.Module {
-	
-	
+public class Module implements com.google.inject.Module {
+
 	@Getter
-	@Inject
-	protected final String name;
-	private List<Class<? extends Module>> binds;
+	@Named("name")
+	protected String name;
+	protected List<Class<? extends Module>> binds;
 	@Getter(lazy = true)
 	private final Logger logger = logger();
 	
 	@Inject
-	public Module(@NonNull @Named("name") String name, @NonNull List<Class<? extends Module>> binds)
+	public Module()
 	{
-		this.name = name;
-		this.binds = binds;
+		
 	}
 	
 	@Override
